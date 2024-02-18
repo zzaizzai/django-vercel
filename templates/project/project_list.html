@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %} {% block content %}
+
+<h5>indext_List</h5>
+<br />
+<div>
+    {% if projects %} {% for project in projects %} {{ project.name }} {{
+    project.description}} {{ project.created_at|date:"Y-m-d" }}
+    <br />
+    {% endfor %} {% endif %}
+</div>
+
+{% endblock %}
