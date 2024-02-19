@@ -1,15 +1,18 @@
 {% load static %}
 
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
+    <meta name="decorator" content="none" />
+
+    <!-- [2] スクリプト等を相対参照するのに必要 -->
+    <base href="." />
+
     <title>Django App</title>
     <link
       rel="stylesheet"
-      type="text/css" 
-      href="{% static  '/static/css/style.css' %}"
+      type="text/css"
+      href="{% static  '/css/style.css' %}"
     />
   </head>
 
