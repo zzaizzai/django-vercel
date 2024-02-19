@@ -3,10 +3,6 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta name="decorator" content="none" />
-
-    <!-- [2] スクリプト等を相対参照するのに必要 -->
-    <base href="." />
 
     <title>Django App</title>
     <link
@@ -17,7 +13,7 @@
   </head>
 
   <body>
-    <h5>basehtml</h5>
+    <h5 class="test">basehtml</h5>
 
     {% include 'core/navbar.html' %} {% block content %} {% endblock %}
   </body>
