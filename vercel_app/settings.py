@@ -131,7 +131,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static_root/static/'
 
 
 # Default primary key field type
