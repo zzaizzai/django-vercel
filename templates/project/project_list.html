@@ -2,11 +2,32 @@
 
 <h5>indext_List</h5>
 <br />
-<div>
-    {% if projects %} {% for project in projects %} {{ project.name }} {{
-    project.description}} {{ project.created_at|date:"Y-m-d" }}
-    <br />
-    {% endfor %} {% endif %}
+
+<div class="table">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if projects %}
+                {% for project in projects %}
+                    <tr>
+                        <td><a href="{% url 'project_detail' %}?id={{ project.id }}">{{ project.name }}</a></td>
+                        <td>{{ project.description }}</td>
+                        <td>{{ project.created_at|date:"Y-m-d" }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">프로젝트가 없습니다.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}

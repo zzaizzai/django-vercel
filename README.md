@@ -97,6 +97,11 @@ This example uses the Web Server Gateway Interface (WSGI) with Django to enable 
 python manage.py runserver --insecure
 ```
 
+
+```bash
+python manage.py collectstatic
+```
+
 Your Django application is now available at `http://localhost:8000`.
 
 ## One-Click Deploy

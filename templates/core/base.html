@@ -13,9 +13,9 @@
   </head>
 
   <body>
-    <h5 class="test">basehtml</h5>
-    <h5 class="test">it is css</h5>
-    <h5 style="color: blue;">it is not css</h5>
-    {% include 'core/navbar.html' %} {% block content %} {% endblock %}
+    {% include 'core/navbar.html' %}
+    
+    
+    <div class="content">{% block content %} {% endblock %}</div>
   </body>
 </html>

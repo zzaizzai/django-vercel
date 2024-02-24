@@ -1,0 +1,11 @@
+
+{% extends 'core/base.html' %} {% block content %}
+
+
+<div>{{project.id |default:'id'}}</div>
+<div>{{project.name |default:'title'}}</div>
+<div>{{project.description |default:"description" }}</div>
+<div>{{project.created_at |default:"created_at" |date:"Y-m-d h:m" }}</div>
+
+
+{% endblock %}
