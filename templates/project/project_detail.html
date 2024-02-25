@@ -3,15 +3,18 @@
 
 
 <!-- Detail -->
-<h2> Detail </h2>
+<h2> {{project.title |default:'title'}} </h2>
 <div class="project-detail">
+    <div>Author: {{project.created_user_name |default:"created_user_name" }}</div>
+    <div>Created: {{project.show_created_and_updated_time |default:"created_at" }}</div>
     <div>ID: {{project.id |default:'id'}}</div>
-    <div>Title: {{project.name |default:'title'}}</div>
-    <div>Description: {{project.description |default:"description" }}</div>
-    <div>Created: {{project.created_at |date:"Y-m-d h:m" |default:"created_at" }}</div>
-    <div>Created User id: {{project.created_user_id |default:"created_user_id" }}</div>
-
-    <div>{{project.created_user_name |default:"created_user_name" }} </div> 
+    
+    <div class="description-box">
+        <div class="title">Description</div>
+        {{project.description |default:"description" }}
+    </div>
+    
+    <!-- <div>Created User id: {{project.created_user_id |default:"created_user_id" }}</div> -->
 
     
     <h3>Schedule</h3>
@@ -22,14 +25,6 @@
     </div>
     
 </div>
-
-<style></style>
-
-<!-- Task Box -->
-
-
-
-
 
 <!-- New Task -->
 <h2>Create Task</h2>
@@ -59,7 +54,7 @@
                 </div>
                 <div class="task-item toolbox" style="margin-left: auto;">
                     {% if task.is_completed %}
-                    <div class="tool hover-cursor hover-dark px-4 check-btn completed" >&check;</div>
+                    <div class="tool hover-cursor hover-dark px-4 check-btn completed " >&check;</div>
                     {% else %}
                     <div class="tool hover-cursor hover-dark px-4 check-btn notcompleted" >&xcirc;</div>
                     {% endif %}

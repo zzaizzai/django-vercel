@@ -65,6 +65,15 @@ class Project(PostBaseModel, models.Model):
                 return None
 
     
+    def show_created_and_updated_time(self) -> str:
+        
+        if self.created_at == self.updated_at:
+            time_str = self.created_at.strftime('%Y-%m-%d %H:%M:%S') + " (Not Updated)"
+            return time_str
+        
+        time_str = self.created_at.strftime('%Y-%m-%d %H:%M:%S') + f" (Updated: {self.updated_at.strftime('%Y-%m-%d %H:%M:%S')})"
+        return time_str
+    
     def get_all_tasks(self) -> List['Task']:
         return Task.get_with_parent_id(self.id)
     
