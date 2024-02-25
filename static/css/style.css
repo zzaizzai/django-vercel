@@ -11,14 +11,23 @@ body{
     background-color: #eee;
     font-weight: bold;
     padding: 5px;
+    display: flex;
+    gap: 20px;
+    justify-content: left;
 }
 
 .navbar-item{
-    padding: 2px;
+    text-decoration: none;
+    background-color: #eee;
+    border-radius: 8px;
+    font-size: 20px;
+    padding: 4px;
     color: black;
 }
 
-
+.navbar-item:hover {
+    filter: brightness(80%); /* 어둡게 만듦 */
+}
 
 .table {
     font-family: Arial, sans-serif;

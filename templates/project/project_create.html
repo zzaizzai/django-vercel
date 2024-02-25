@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %} {% block content %}
+
+<h2> Create New Project </h2>
+
+
+
+<form action="{% url 'project_create' %}"  method="post">
+    {% csrf_token %}
+    <input name="title" placeholder="title">
+    <input name="created_user_id" hidden type="number" value="1">
+    <button type="submit">GoGo</button>
+</form>
+
+
+
+{% endblock %}

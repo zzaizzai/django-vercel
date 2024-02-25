@@ -4,23 +4,33 @@ from core.common_funcs import dictfetchall
 
 # Create your models here.
 class Projects(models.Model):
-    name = models.CharField('project name', max_length=100)
+    title = models.CharField('project name', max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField(blank=True, max_length=255)
-
+    created_user_id = models.IntegerField() 
+    created_user_name = models.CharField(max_length=100, null=True)
+    
+    def __str__(self):
+        return self.title
+    
     class Meta:
         managed = False  # Exclude this model from migrations
         db_table = 'projects' 
 
-    def __str__(self):
-        return self.name
-
     @classmethod
-    def get_all(cls):
-        sql = """
-        SELECT
-        *
+    def get_all(cls, sort="desc"):
+
+        sql_sort = "DESC"
+        
+        
+        if sort == "asc":
+            sql_sort = "asc"
+
+        sql = f"""
+        SELECT *
         FROM projects
+        ORDER BY id {sql_sort}
         """
 
         # Execute the SQL query
@@ -30,7 +40,10 @@ class Projects(models.Model):
             row = dictfetchall(cursor)
         
         return row
-
+    
+    def create_a_project(self):
+        self.save()
+        
     @classmethod
     def create_table(cls):
         # Drop existing table if it exists
@@ -45,12 +58,13 @@ class Projects(models.Model):
     
     @classmethod
     def create_demo_data(cls):
+        
         sql = """
-        INSERT INTO projects (name, created_at, description)
+        INSERT INTO projects (title, created_at, description, created_user_id, created_user_name)
         VALUES
-            ('Project 1', NOW(), 'Description for Project 1'),
-            ('Project 2', NOW(), 'Description for Project 2'),
-            ('Project 3', NOW(), 'Description for Project 3')
+            ('Project 1', NOW(), 'Description for Project 1', 1, 'User1'),
+            ('Project 2', NOW(), 'Description for Project 2', 1, 'User1'),
+            ('Project 3', NOW(), 'Description for Project 3', 1, 'User1')
         """
 
         # Execute the SQL query
@@ -58,3 +72,15 @@ class Projects(models.Model):
             cursor.execute(sql)
 
         return "Demo data created successfully"
+    
+class DemoData():
+    
+    @classmethod
+    def create_demo_data_projects(cls):
+        Projects(title='Project 1', description = 'Description for Project 1', created_user_id= 1, created_user_name='User1').create_a_project()
+        Projects(title='Project 2', description = 'Description for Project 2', created_user_id= 1, created_user_name='User1').create_a_project()
+        Projects(title='Project 3', description = 'Description for Project 3', created_user_id= 1, created_user_name='User1').create_a_project()
+        
+        
+        
+        

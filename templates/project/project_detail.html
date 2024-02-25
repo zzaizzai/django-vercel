@@ -6,6 +6,8 @@
 <div>{{project.name |default:'title'}}</div>
 <div>{{project.description |default:"description" }}</div>
 <div>{{project.created_at |default:"created_at" |date:"Y-m-d h:m" }}</div>
+<div>{{project.created_user_id |default:"created_user_id" }}</div>
+<div>{{project.created_user_name |default:"created_user_name" }}</div>
 
 
 {% endblock %}

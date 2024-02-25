@@ -6,8 +6,7 @@ from django.shortcuts import render, redirect
 from django.db import connection
 from core.common_funcs import dictfetchall
 from django.http import HttpResponse
-from .models import Projects
-
+from .models import Projects, DemoData
 
 class Home(TemplateView):
     template_name = 'core/home.html'
@@ -56,6 +55,7 @@ class ProjectDetail(TemplateView):
         
         return render(request, self.template_name, context)
 
+
 class ProjectList(TemplateView):
     template_name = 'project/project_list.html'
     
@@ -66,9 +66,40 @@ class ProjectList(TemplateView):
         
         return render(request, self.template_name, context)
     
+    
+class ProjectAdd(TemplateView):
+    template_name = 'project/project_create.html'
+    
+    
+    def get(self, request):
+        
+        context = self.get_context_data()
+        
+        return render(request, self.template_name, context)
 
+    def post(self, request):
+
+        description = 'description for demo'
+        
+        try:
+            title = str(request.POST.get('title'))
+            created_user_id = int(request.POST.get('created_user_id'))
+        except ValueError:
+            return redirect('/projects/list')
+        
+        try:
+            Projects(title = title,description = description, created_user_name= "User1 for Demo", created_user_id = created_user_id).create_a_project()
+        except Exception as e:
+            print(e)
+            
+        
+        return redirect('/projects/list')
+    
 def create_table(request):
-    a= Projects
-    a.create_table() 
-    a.create_demo_data()
+    try:
+        Projects.create_table()  
+        DemoData().create_demo_data_projects()
+    except Exception as e:
+        print(e)
+        return HttpResponse(e)
     return HttpResponse('good')
