@@ -1,0 +1,59 @@
+.button {
+  display: inline-block;
+  padding: 10px 10px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid #007bff; /* 기본 파란색 테두리 색상 */
+  color: #007bff; /* 기본 파란색 글자색 */
+  background-color: transparent; /* 배경색 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  transition: all 0.3s ease; /* 전환 효과 */
+}
+
+/* 파란색 버튼 */
+.button.blue {
+  border-color: #007bff;
+  color: #007bff;
+}
+.button.blue:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* 빨간색 버튼 */
+.button.red {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+.button.red:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+/* 녹색 버튼 */
+.button.green {
+  border-color: #00ff00;
+  color: #00ff00;
+}
+.button.green:hover {
+  background-color: #00ff00;
+  color: #fff;
+}
+
+/* 노란색 버튼 */
+.button.yellow {
+  border-color: #ffff00;
+  color: #ffff00;
+}
+.button.yellow:hover {
+  background-color: #ffff00;
+  color: #fff;
+}
+
+/* 클릭 시 버튼 스타일 */
+.button:active {
+  transform: translateY(1px); /* 버튼 아래로 이동 */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* 그림자 추가 */
+}

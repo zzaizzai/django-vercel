@@ -56,30 +56,13 @@ class Projects(models.Model):
 
         return "Table created successfully"
     
-    @classmethod
-    def create_demo_data(cls):
-        
-        sql = """
-        INSERT INTO projects (title, created_at, description, created_user_id, created_user_name)
-        VALUES
-            ('Project 1', NOW(), 'Description for Project 1', 1, 'User1'),
-            ('Project 2', NOW(), 'Description for Project 2', 1, 'User1'),
-            ('Project 3', NOW(), 'Description for Project 3', 1, 'User1')
-        """
-
-        # Execute the SQL query
-        with connection.cursor() as cursor:
-            cursor.execute(sql)
-
-        return "Demo data created successfully"
-    
 class DemoData():
     
     @classmethod
     def create_demo_data_projects(cls):
-        Projects(title='Project 1', description = 'Description for Project 1', created_user_id= 1, created_user_name='User1').create_a_project()
-        Projects(title='Project 2', description = 'Description for Project 2', created_user_id= 1, created_user_name='User1').create_a_project()
-        Projects(title='Project 3', description = 'Description for Project 3', created_user_id= 1, created_user_name='User1').create_a_project()
+        Projects(title='Project 1', description = 'Description for Project 1', created_user_id= 1, created_user_name='User1 for Demo').create_a_project()
+        Projects(title='Project 2', description = 'Description for Project 2', created_user_id= 1, created_user_name='User1 for Demo').create_a_project()
+        Projects(title='Project 3', description = 'Description for Project 3', created_user_id= 1, created_user_name='User1 for Demo').create_a_project()
         
         
         
