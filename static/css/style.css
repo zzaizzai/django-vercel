@@ -1,7 +1,54 @@
+.mx-2 {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.mx-4 {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.my-2 {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.my-4 {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.right-align {
+    margin-left: auto;
+}
+
 body{
     margin: 0px;
     padding: 0px;
 }
+
+input {
+    border: 1px solid #ccc; /* Border style */
+    padding: 8px; /* Inner padding */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: border-color 0.3s ease; /* Border color transition effect */
+    font-size: 16px; /* Font size */
+  }
+  
+  /* Input styles on focus */
+  input:focus {
+    border-color: #007bff; /* Border color on focus */
+    outline: none; /* Remove focus outline */
+  }
+
+
+
+
 
 .content{
     margin: 8px;
@@ -27,41 +74,4 @@ body{
 
 .navbar-item:hover {
     filter: brightness(80%); /* 어둡게 만듦 */
-}
-
-.table {
-    font-family: Arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.table table {
-    border: 1px solid #ddd;
-}
-
-.table th, .table td {
-    padding: 8px;
-    text-align: left;
-}
-
-.table th {
-    background-color: #f2f2f2;
-    color: #333;
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.table tbody tr:hover {
-    background-color: #ddd;
-}
-
-.table a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-.table a:hover {
-    text-decoration: underline;
 }

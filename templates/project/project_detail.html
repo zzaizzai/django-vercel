@@ -2,12 +2,74 @@
 {% extends 'core/base.html' %} {% block content %}
 
 
-<div>{{project.id |default:'id'}}</div>
-<div>{{project.name |default:'title'}}</div>
-<div>{{project.description |default:"description" }}</div>
-<div>{{project.created_at |default:"created_at" |date:"Y-m-d h:m" }}</div>
-<div>{{project.created_user_id |default:"created_user_id" }}</div>
-<div>{{project.created_user_name |default:"created_user_name" }}</div>
+<!-- Detail -->
+<h2> Detail </h2>
+<div class="project-detail">
+    <div>ID: {{project.id |default:'id'}}</div>
+    <div>Title: {{project.name |default:'title'}}</div>
+    <div>Description: {{project.description |default:"description" }}</div>
+    <div>Created: {{project.created_at |date:"Y-m-d h:m" |default:"created_at" }}</div>
+    <div>Created User id: {{project.created_user_id |default:"created_user_id" }}</div>
 
+    <div>{{project.created_user_name |default:"created_user_name" }} </div> 
+
+    
+    <h3>Schedule</h3>
+    <div class="plan-date">
+        <div class="date start">{{project.start_date |date:"Y-m-d"  |default:"2000-01-01" }}</div>
+        <div class="mx-4">~</div>
+        <div class="date end">{{project.end_date |date:"Y-m-d" |default:"2999-01-01" }}</div>
+    </div>
+    
+</div>
+
+<style></style>
+
+<!-- Task Box -->
+
+<h2>Task List</h2>
+<div class="project-tasks-box"">
+    <div class="project-tasks">
+
+        <div class="task-timeline">
+            <div class="task">
+                <div class="task-item">
+                    <div>{{task.temp_date  |date:"Y-m-d"  |default:"00-01-01" }}</div>
+                    <div class="title">{{task.temp |default:"task_title" }}</div>
+                </div>
+                <div class="task-item toolbox" style="margin-left: auto;">
+                    <div class="mx-2 right-content">X</div> 
+                    <div class="mx-2">...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-timeline">
+            <div class="task">
+                <div class="task-item">
+                    <div>{{task.temp_date  |date:"Y-m-d"  |default:"00-01-01" }}</div>
+                    <div class="title">{{task.temp |default:"task_title" }}</div>
+                </div>
+                <div class="task-item toolbox" style="margin-left: auto;">
+                    <div class="mx-2 right-content">X</div> 
+                    <div class="mx-2">...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="task-timeline">
+            <div class="task">
+                <div class="task-item">
+                    <div>{{task.temp_date  |date:"Y-m-d"  |default:"00-01-01" }}</div>
+                    <div class="title">{{task.temp |default:"task_title" }}</div>
+                </div>
+                <div class="task-item toolbox" style="margin-left: auto;">
+                    <div class="mx-2 right-content">X</div> 
+                    <div class="mx-2">...</div>
+                </div>
+            </div>
+        </div>
+
+</div>
 
 {% endblock %}
