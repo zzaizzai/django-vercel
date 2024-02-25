@@ -148,10 +148,16 @@
 }
 
 
-.check-btn.completed {
+.task.completed .check-btn {
     color: green;
 }
 
-.check-btn.notcompleted {
+.task.completed .title {
+    color: gray;
+    text-decoration: line-through;
+}
+
+
+.task.notcompleted .check-btn {
     font-weight: normal;
 }
