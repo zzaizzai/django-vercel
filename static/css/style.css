@@ -18,12 +18,35 @@
     margin-bottom: 4px;
 }
 
+.px-2 {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.px-4 {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
 .flex-container {
     display: flex;
 }
 
 .right-align {
     margin-left: auto;
+}
+
+.hover-cursor {
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.hover-dark:hover {
+    background-color: gray
+}
+
+.hover-cursor:hover {
+    cursor: pointer;
 }
 
 body{

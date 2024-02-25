@@ -28,6 +28,20 @@
 <!-- Task Box -->
 
 <h2>Task List</h2>
+
+
+
+<!-- New Task -->
+<form action="{% url 'task_add' %}" method="post">
+    {% csrf_token %}
+    <h2>Create Task</h2>
+    <input name="parent_project_id"  type="number" value="{{project.id |default:'id'}}" hidden>
+    <input type="text" name="title" placeholder="Task Title">
+    <input name="plan_date" type="date"  value="{{ today|date:'Y-m-d' }}">
+    <button class="button blue" type="submit">Done</button>
+</form>
+
+
 <div class="project-tasks-box"">
     <div class="project-tasks">
 
@@ -38,8 +52,9 @@
                     <div class="title">{{task.temp |default:"task_title" }}</div>
                 </div>
                 <div class="task-item toolbox" style="margin-left: auto;">
-                    <div class="mx-2 right-content">X</div> 
-                    <div class="mx-2">...</div>
+                    <div class="tool hover-cursor hover-dark px-4 check-btn" >&check;</div>
+                    <div class="tool hover-cursor hover-dark px-4 delete-btn">&#128939;</div> 
+                    <div class="tool hover-cursor hover-dark px-4">&#x2026;</div>
                 </div>
             </div>
         </div>
@@ -51,25 +66,93 @@
                     <div class="title">{{task.temp |default:"task_title" }}</div>
                 </div>
                 <div class="task-item toolbox" style="margin-left: auto;">
-                    <div class="mx-2 right-content">X</div> 
-                    <div class="mx-2">...</div>
+                    <div class="tool hover-cursor hover-dark px-4 check-btn" >&check;</div>
+                    <div class="tool hover-cursor hover-dark px-4 delete-btn">&#128939;</div> 
+                    <div class="tool hover-cursor hover-dark px-4">&#x2026;</div>
                 </div>
             </div>
         </div>
 
+        {% for task in tasks %}
         <div class="task-timeline">
             <div class="task">
                 <div class="task-item">
-                    <div>{{task.temp_date  |date:"Y-m-d"  |default:"00-01-01" }}</div>
-                    <div class="title">{{task.temp |default:"task_title" }}</div>
+                    <input hidden type="number" name='id' value="{{task.id}}" >
+                    <div class="plan_date">{{task.plan_date  |date:"y-m-d"  |default:"00-01-01" }}</div>
+                    <div class="title">{{task.title |default:"task_title" }}</div>
                 </div>
                 <div class="task-item toolbox" style="margin-left: auto;">
-                    <div class="mx-2 right-content">X</div> 
-                    <div class="mx-2">...</div>
+                    <div class="tool hover-cursor hover-dark px-4 check-btn" >&check;</div>
+                    <div class="tool hover-cursor hover-dark px-4 delete-btn">&#128939;</div> 
+                    <div class="tool hover-cursor hover-dark px-4">&#x2026;</div>
                 </div>
             </div>
         </div>
+        
+        {% endfor %}
 
+        <script>
+            var csrftoken = '{{ csrf_token }}';
+
+
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
+            $(document).ready(function(){
+                $('.check-btn').click(function(){
+                    var taskID = $(this).closest('.task').find('input[name="id"]').val();
+                    console.log(taskID)
+                    alert('TODO: Check this task')
+
+                })
+            })
+
+
+            $(document).ready(function(){
+                $('.delete-btn').click(function(){
+                    var taskID = $(this).closest('.task').find('input[name="id"]').val();
+                    var taskPlanDate = $(this).closest('.task').find('.plan_date').text();
+                    var taskTitle = $(this).closest('.task').find('.title').text();
+
+                    var confirmDelete = confirm('Are you sure you want to delete this task?');
+
+                    if (confirmDelete) {                    
+                        
+                        $.ajax({
+                            url: '/projects/tasks/delete',
+                            type: 'POST',
+                            data: {
+                                plan_date: taskPlanDate,
+                                title: taskTitle,
+                                id: taskID
+                            },
+
+                            success: function(response){
+                            if (!response.success) {
+                                alert('Error:' + response.message);
+                            }
+                            if (response.success) {
+                                console.log('Task deleted successfully.');
+                                alert('Task deleted successfully.');
+                                location.reload(); 
+                            }
+                            },
+                            error: function(xhr, status, error){
+                                console.error('Error deleting task:', error);
+                                alert('Error deleting task: ' + error);
+                        }
+                    });
+                
+                }
+                });
+            });
+            </script>
+    </div>
 </div>
 
 {% endblock %}

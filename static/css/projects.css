@@ -45,6 +45,12 @@
     justify-content: space-between;
 }
 
+
+.task-item .tool {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .task {
     display: flex;
     width: 100%;
@@ -87,7 +93,6 @@
 
 .task-timeline:hover {
     background-color: rgba(0, 0, 0, 0.1); /* Darken the background color on hover */
-    cursor: pointer;
 }
 
 .task-timeline:hover .task::before {
