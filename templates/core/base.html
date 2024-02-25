@@ -5,29 +5,23 @@
   <head>
 
     <title>Django App</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static  '/css/style.css' %}?after"
-    />
-      <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static  '/css/button.css' %}?after"
-    />
-    <link
-    rel="stylesheet"
-    type="text/css"
-    href="{% static  '/css/projects.css' %}?after"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static  '/css/style.css' %}?after" />
+    <link rel="stylesheet" type="text/css" href="{% static  '/css/button.css' %}?after"/>
+    <link rel="stylesheet" type="text/css" href="{% static  '/css/projects.css' %}?after"/>
+    <link rel="stylesheet" type="text/css" href="{% static  '/css/spinner.css' %}?after"/>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
 
   <body>
     {% include 'core/navbar.html' %}
-    
-    
-    <div class="content">{% block content %} {% endblock %}</div>
+    {% include 'core/spinner.html' %}
+  
+
+    <div class="content">
+      {% block content %} 
+
+
+      {% endblock %}</div>
   </body>
 </html>
