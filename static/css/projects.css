@@ -146,3 +146,12 @@
 .date.end {
     background-color: rgb(255, 127, 127);
 }
+
+
+.check-btn.completed {
+    color: green;
+}
+
+.check-btn.notcompleted {
+    font-weight: normal;
+}

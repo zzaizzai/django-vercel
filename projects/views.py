@@ -105,7 +105,32 @@ class TaskDelete(TemplateView):
             response_data = {'success': False, 'message': str(e)}
             return JsonResponse(response_data, status=400) 
 
+class TaskComplete(TemplateView):
+    
+    def post(self, request):
+        task_id = request.POST.get('id')
+        print(task_id)
+        
+        task = Task.get_one_task_with_id(task_id=task_id)
 
+        
+
+            
+        try:
+            if task.is_completed is True:
+                task.uncomplete()
+                response_data = {'success': True, 'message': 'Task uncomplete successfully.'}
+            else:
+                task.complete()
+                response_data = {'success': True, 'message': 'Task complete successfully.'}
+            return JsonResponse(response_data)
+        
+        except Exception as e:
+            # 실패시 예외 처리
+            print(e)
+            response_data = {'success': False, 'message': str(e)}
+            return JsonResponse(response_data, status=400) 
+        
 class ProjectList(TemplateView):
     template_name = 'project/project_list.html'
     

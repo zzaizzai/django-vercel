@@ -52,7 +52,11 @@
                     <div class="title">{{task.temp |default:"task_title" }}</div>
                 </div>
                 <div class="task-item toolbox" style="margin-left: auto;">
-                    <div class="tool hover-cursor hover-dark px-4 check-btn" >&check;</div>
+                    {% if task.is_completed %}
+                    <div class="tool hover-cursor hover-dark px-4 check-btn completed" >&check;</div>
+                    {% else %}
+                    <div class="tool hover-cursor hover-dark px-4 check-btn notcompleted" >O</div>
+                    {% endif %}
                     <div class="tool hover-cursor hover-dark px-4 delete-btn">&#128939;</div> 
                     <div class="tool hover-cursor hover-dark px-4">&#x2026;</div>
                 </div>
@@ -66,7 +70,11 @@
                     <div class="title">{{task.temp |default:"task_title" }}</div>
                 </div>
                 <div class="task-item toolbox" style="margin-left: auto;">
-                    <div class="tool hover-cursor hover-dark px-4 check-btn" >&check;</div>
+                    {% if task.is_completed %}
+                    <div class="tool hover-cursor hover-dark px-4 check-btn completed" >&check;</div>
+                    {% else %}
+                    <div class="tool hover-cursor hover-dark px-4 check-btn notcompleted" >O</div>
+                    {% endif %}
                     <div class="tool hover-cursor hover-dark px-4 delete-btn">&#128939;</div> 
                     <div class="tool hover-cursor hover-dark px-4">&#x2026;</div>
                 </div>
@@ -82,7 +90,11 @@
                     <div class="title">{{task.title |default:"task_title" }}</div>
                 </div>
                 <div class="task-item toolbox" style="margin-left: auto;">
-                    <div class="tool hover-cursor hover-dark px-4 check-btn" >&check;</div>
+                    {% if task.is_completed %}
+                    <div class="tool hover-cursor hover-dark px-4 check-btn completed" >&check;</div>
+                    {% else %}
+                    <div class="tool hover-cursor hover-dark px-4 check-btn notcompleted" >O</div>
+                    {% endif %}
                     <div class="tool hover-cursor hover-dark px-4 delete-btn">&#128939;</div> 
                     <div class="tool hover-cursor hover-dark px-4">&#x2026;</div>
                 </div>
@@ -107,7 +119,27 @@
                 $('.check-btn').click(function(){
                     var taskID = $(this).closest('.task').find('input[name="id"]').val();
                     console.log(taskID)
-                    alert('TODO: Check this task')
+
+                    $.ajax({
+                            url: '/projects/tasks/complete',
+                            type: 'POST',
+                            data: {
+                                id: taskID
+                            },
+
+                            success: function(response){
+                            if (!response.success) {
+                                alert('Error:' + response.message);
+                            }
+                            if (response.success) {
+                                location.reload(); 
+                            }
+                            },
+                            error: function(xhr, status, error){
+                                console.error('Error deleting task:', error);
+                                alert('Error deleting task: ' + error);
+                        }
+                    });
 
                 })
             })

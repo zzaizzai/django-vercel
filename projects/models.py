@@ -1,6 +1,7 @@
 from typing import List, Union
 from django.db import models, connection
 from core.common_funcs import dictfetchall
+from datetime import date
 
 
 class PostBaseModel(models.Model):
@@ -98,6 +99,20 @@ class Task(PostBaseModel, models.Model):
     def create_a_task(self):
         self.save()
     
+    def complete(self):
+        self.is_completed = True
+        self.completed_at = date.today()
+        self.save()
+    
+    def uncomplete(self):
+        self.is_completed = False
+        self.completed_at = None
+        self.save()
+        
+    @staticmethod
+    def get_one_task_with_id(task_id: int) -> Union['Task', None]:
+        return Task.objects.get(pk=task_id)
+        
     @staticmethod
     def get_with_parent_id(parent_project_id: int) -> List['Task']:
         
